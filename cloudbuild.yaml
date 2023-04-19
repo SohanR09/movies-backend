@@ -17,7 +17,7 @@ steps:
       - 'deploy'
       - 'movies-service'
       - '--image'
-      - 'gcr.io/movies-dashboard-384017D/movies-service:latest'
+      - 'gcr.io/movies-dashboard-384017/movies-service:latest'
       - '--region'
       - 'asia-south1'
 options:
