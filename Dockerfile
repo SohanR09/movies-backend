@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk
+FROM openjdk:6-jdk-slim
 VOLUME /tmp
 ADD target/Movies-0.0.1-SNAPSHOT.jar app.jar
 ENV PORT 3000
