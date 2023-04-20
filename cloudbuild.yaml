@@ -29,7 +29,19 @@ steps:
       - '--port'
       - '3000'
       - '--quiet'
-
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'compute'
+      - 'firewall-rules'
+      - 'create'
+      - 'allow-http'
+      - '--allow'
+      - 'tcp:3000'
+      - '--source-ranges'
+      - '0.0.0.0/0'
+      - '--description'
+      - 'Allow HTTP traffic from anywhere'
+      - '--quiet'
 options:
   logging: CLOUD_LOGGING_ONLY
 
