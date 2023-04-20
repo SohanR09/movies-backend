@@ -1,14 +1,17 @@
 steps:
   - name: 'maven'
     entrypoint: 'mvn'
-    args: ['clean', 'install', '-DskipTests']
-  #https://cloud.google.com/build/docs/cloud-builders
+    args: [ 'clean', 'install', '-DskipTests' ]
+
   # Build the container image
+  #https://cloud.google.com/build/docs/cloud-builders
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/movies-dashboard-384017/movies-service:latest', '.']
+    args: [ 'build', '-t', 'gcr.io/movies-dashboard-384017/movies-service:latest', '.' ]
+
   # Push the container image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/movies-dashboard-384017/movies-service:latest']
+    args: [ 'push', 'gcr.io/movies-dashboard-384017/movies-service:latest' ]
+    it
   # Deploy container image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
@@ -20,7 +23,11 @@ steps:
       - 'gcr.io/movies-dashboard-384017/movies-service:latest'
       - '--region'
       - 'asia-south1'
+      - '--port'
+      - '8080'
+      - '--quiet'
+
 options:
   logging: CLOUD_LOGGING_ONLY
 
-images: [gcr.io/movies-dashboard-384017/movies-service:latest]
+images: [ gcr.io/movies-dashboard-384017/movies-service:latest ]
