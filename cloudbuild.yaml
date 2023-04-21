@@ -5,8 +5,8 @@ steps:
 
   # Build the container image
   #https://cloud.google.com/build/docs/cloud-builders
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args: [ 'builds', 'submit', '--tag', 'gcr.io/movies-dashboard-384017/movies-service:latest', '.' ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'build', '-t', 'gcr.io/movies-dashboard-384017/movies-service:latest', '.' ]
 
   # Push the container image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
